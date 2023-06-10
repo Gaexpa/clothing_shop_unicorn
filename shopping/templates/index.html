@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+<!--head-->
+{% block title %}
+Unicorn OFFICAIL
+{% endblock %}
+
+<!--body-->
+{% block content %}
+<main class="contents-products">
+    <!--左側分類toggle-->
+    <div class="contents-sub">
+        <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+            <a class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                <span class="fs-5 fw-semibold">search by category</span>
+            </a>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#upper-collapse" aria-expanded="false">
+                    上衣
+                    </button>
+                    <div class="collapse" id="upper-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="category/knit" class="link-dark rounded">針織衫</a></li>
+                        <li><a href="category/shirt" class="link-dark rounded">襯衫</a></li>
+                        <li><a href="category/sweat" class="link-dark rounded">大學T</a></li>
+                        <li><a href="category/t_shirt" class="link-dark rounded">T恤</a></li>
+                        <li><a href="category/tank_top" class="link-dark rounded">吊帶背心</a></li>
+                        <li><a href="category/vest" class="link-dark rounded">背心</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#outer-collapse" aria-expanded="false">
+                    外套
+                    </button>
+                    <div class="collapse" id="outer-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="category/jacket" class="link-dark rounded">夾克</a></li>
+                        <li><a href="category/cardigan" class="link-dark rounded">開襟衫</a></li>
+                        <li><a href="category/coat" class="link-dark rounded">大衣</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dress-collapse" aria-expanded="false">
+                    洋裝
+                    </button>
+                    <div class="collapse" id="dress-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="category/knit_dress" class="link-dark rounded">針織洋裝</a></li>
+                        <li><a href="category/long_dress" class="link-dark rounded">長洋裝</a></li>
+                        <li><a href="category/shirt_dress" class="link-dark rounded">短洋裝</a></li>
+                        <li><a href="category/cami_dress" class="link-dark rounded">細肩帶洋裝</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#bottom-collapse" aria-expanded="false">
+                    下身
+                    </button>
+                    <div class="collapse" id="bottom-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="category/pants" class="link-dark rounded">長褲</a></li>
+                        <li><a href="category/shorts" class="link-dark rounded">短褲</a></li>
+                        <li><a href="category/skirt" class="link-dark rounded">裙子</a></li>
+                    </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!--右側最新商品-->
+    <div class="content-main-upper">
+        <div class="alert alert-light text-center display-6">
+            最新到貨
+        </div>
+
+        {% for n in new_products %}
+            
+            {% if forloop.counter == 1 or forloop.counter == 6 %}
+                <ul class="list-group list-group-horizontal">
+            {% endif %}
+            <a href="details/{{ n.id }}">
+                <li class="list-group-item card" style="width: 12rem;">
+                    <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
+                    <p class="card-title">{{ n.name }}</p>
+                    <p class="card-text">{{ n.price }}元</p>
+                </li>
+            </a>
+            {% if forloop.counter == 5 %}
+                </ul>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <!--右側最熱賣商品-->
+    <div class="content-main-lower">
+        <div class="alert alert-light text-center display-6">
+            熱賣商品
+        </div>
+        
+        {% for b in best_selling_products %}
+            
+            {% if forloop.counter == 1 or forloop.counter == 6 %}
+                <ul class="list-group list-group-horizontal">
+            {% endif %}
+            <a href="details/{{ b.id }}">
+                <li class="list-group-item card" style="width: 12rem;">
+                    <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
+                    <p class="card-title">{{ b.name }}</p>
+                    <p class="card-text">{{ b.price }}元</p>
+                </li>
+            </a>
+            {% if forloop.counter  == 5 %}
+                </ul>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
