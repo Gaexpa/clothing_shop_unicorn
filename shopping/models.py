@@ -129,7 +129,7 @@ class Order_Product(models.Model):
     amount = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f'{self.order, self.product}'
+        return f'{self.order, self.product,self.amount}'
 
 
 #留言
