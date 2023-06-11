@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'psychometric_test.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="background">
+    <form method="post" action="{% url 'psychometric_test' %}">
+        {% csrf_token %}
+        <h3>問題{{ question.id }}：</h3>
+        <p>{{ question.text }}</p>
+        {% for choice in question.choices %}
+        <input type="radio" name="answer" value="{{ choice }}"> {{ choice }}<br>
+        {% endfor %}
+        <input type="submit" value="下一題">
+    </form>
+</div>
+{% endblock %}
