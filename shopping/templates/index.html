@@ -82,7 +82,7 @@ Unicorn OFFICAIL
             {% if forloop.counter == 1 or forloop.counter == 6 %}
                 <ul class="list-group list-group-horizontal">
             {% endif %}
-            <a href="details/{{ n.id }}">
+            <a href="/index/details/{{ n.id }}">
                 <li class="list-group-item card" style="width: 12rem;">
                     <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
                     <p class="card-title">{{ n.name }}</p>
@@ -107,7 +107,7 @@ Unicorn OFFICAIL
             {% if forloop.counter == 1 or forloop.counter == 6 %}
                 <ul class="list-group list-group-horizontal">
             {% endif %}
-            <a href="details/{{ b.id }}">
+            <a href="/index/details/{{ b.id }}">
                 <li class="list-group-item card" style="width: 12rem;">
                     <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
                     <p class="card-title">{{ b.name }}</p>
