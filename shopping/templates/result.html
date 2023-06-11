@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}{% endblock %}
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+<h2>測驗結果</h2>
+<h2>choice: {{choice }}</h2>
+{% if choice=='R' %}
+<img src="" alt="red">
+{% elif choice=='B' %}
+<img src="" alt="blue">
+{% elif choice=='G' %}
+<img src="" alt="green">
+{% elif choice=='Y' %}
+<img src="" alt="yellow">
+{% endif %}
+<h3>Answers:</h3>
+<ul>
+    {% for answer in answers %}
+    <li>{{ answer }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
