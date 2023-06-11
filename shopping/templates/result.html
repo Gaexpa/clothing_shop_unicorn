@@ -9,14 +9,17 @@
 {% block content %}
 <h2>測驗結果</h2>
 <h2>choice: {{choice }}</h2>
-{% if choice=='R' %}
-<img src="" alt="red">
-{% elif choice=='B' %}
-<img src="" alt="blue">
-{% elif choice=='G' %}
-<img src="" alt="green">
-{% elif choice=='Y' %}
-<img src="" alt="yellow">
+{% if choice == 'R' %}
+<img src="https://i.ibb.co/nfJbDXj/e90d6f4c-0a77-4d1b-8eac-07af8ffd18c6.jpg" alt="e90d6f4c-0a77-4d1b-8eac-07af8ffd18c6"
+    border="0">
+{% elif choice == 'B' %}
+<img src="https://i.ibb.co/GCgdDHZ/f9be54dc-298d-46d4-ae64-e3de96e508ec.jpg" alt="f9be54dc-298d-46d4-ae64-e3de96e508ec"
+    border="0">
+{% elif choice == 'G' %}
+<a href="https://ibb.co/9sXqXKV"><img src="https://i.ibb.co/nz2D2dn/e80377d4-44c3-4bc7-8101-9920b641b41c.jpg"
+        alt="e80377d4-44c3-4bc7-8101-9920b641b41c" border="0"></a>
+{% elif choice == 'Y' %}
+<img src="https://upload.cc/i1/2023/06/11/4goFJQ.jpg" alt="yellow">
 {% endif %}
 <h3>Answers:</h3>
 <ul>
