@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}
+訂單資訊
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .car {
+        margin: 0 auto;
+    }
+
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    .card {
+        border-style: none;
+        border-radius: 0px;
+        border-bottom: 2px black solid;
+    }
+
+    .clothes {
+        width: 130px;
+    }
+
+    .card-title {
+        text-align: left;
+    }
+
+    .send,
+    .order-list {
+        background-color: rgb(230, 233, 235);
+        text-align: center;
+        margin-bottom: 20px;
+        margin: 0 auto;
+    }
+
+    h3 {
+        border-bottom: 1px black solid;
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    button {
+        display: block;
+        margin-bottom: 20px;
+        background-color: black;
+        color: aliceblue;
+        border-radius: 10px;
+        border-style: none;
+        width: 280px;
+        height: 60px;
+        margin: 0 auto;
+    }
+</style>
+
+<div class="car col-md-8">
+    <div class="car-head mt-3">
+        <h2>訂單詳情</h2>
+    </div>
+    <div class="wrap">
+        <div class="car-list col-md-6">
+            {% for x in order_items  %}
+            <div class="card mb-3">
+                <div class="row gx-0">
+                    <div class="photo col-md-4 mb-3">
+                        <img class="clothes" src="{{x.photo}}" width="200">
+                    </div>
+                    <div class="col-md-8 mb-3 ">
+                        <div class="card-body">
+                            <h5 class="card-title">{{x.name}}</h5>
+                            <div class="item-information">
+                                <table>
+                                    <tr>
+                                        <th> 顏色：</th>
+                                        <td>{{x.color}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>尺寸：</th>
+                                        <td>{{x.size}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>價格 ：</th>
+                                        <td>{{x.price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>數量 ：</th>
+                                        <td>{{x.amount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="order col-md-6">
+            <div class="send col-md-10">
+                <h3>送貨資料</h3>
+                <p>收件人姓名:{{customer.user}}</p>
+                <p>收件地址:{{customer.address}}</p>
+                <p>備註</p>
+            </div>
+            <div class="order-list col-md-10">
+                <h3>付款詳請</h3>
+                <p>商品總金額 : {{ total_price }}</p>
+                <p>運費</p>
+                <p>總付款金額</p>
+            </div>
+            <button>結帳</button>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
