@@ -13,45 +13,48 @@ Unicorn OFFICAIL
 
 <!--body-->
 {% block content %}
-    {%if request.user.is_authenticated %}
-        <p>
-            <div class="row justify-content-start">
-                <div class="col-4 order-first"></div>
-                <div class="col"><img src="https://i.ibb.co/Q6V7TmG/012e47e5-e520-4c86-a560-39f60c8d3457.jpg" width="400px" height="400px" alt=""> </div>
-                <div class="col order-last"></div>
-            </div>
-            
-            {{request.user}} 登入成功嘞 
-            <br>
-            <a href="{% url 'logout' %}">登出</a>
-        </p>
-    {% else %}
-        <p>
-            <div class="row justify-content-start">
-                <div class="col-4 order-first"></div>
-                <div class="col"><img src="https://i.ibb.co/GFf29cy/58cb1dcc-c732-4fa5-b89e-79115a714b1f.jpg" width="400px" height="400px" alt="58cb1dcc-c732-4fa5-b89e-79115a714b1f" border="0"></a> </div>
-                <div class="col order-last"></div>
-            </div>
-        <div class="row justify-content-start">
-            
-        </div>
-            訪客
-        </p>
-    {% endif %}
-    <main class="container">
-        <!--左側分類toggle-->
-        <div class="row align-items-start">
-            <div class="col-3 contents-sub">
-                <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-                    <a class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                        <span class="fs-5 fw-semibold">search by category</span>
-                    </a>
-                    <ul class="list-unstyled ps-0">
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#upper-collapse" aria-expanded="false">
+{%if request.user.is_authenticated %}
+<p>
+<div class="row justify-content-start">
+    <div class="col-4 order-first"></div>
+    <div class="col"><img src="https://i.ibb.co/Q6V7TmG/012e47e5-e520-4c86-a560-39f60c8d3457.jpg" width="400px"
+            height="400px" alt=""> </div>
+    <div class="col order-last"></div>
+</div>
+
+{{request.user}} 登入成功嘞
+<br>
+<a href="{% url 'logout' %}">登出</a>
+</p>
+{% else %}
+<p>
+<div class="row justify-content-start">
+    <div class="col-4 order-first"></div>
+    <div class="col"><img src="https://i.ibb.co/GFf29cy/58cb1dcc-c732-4fa5-b89e-79115a714b1f.jpg" width="400px"
+            height="400px" alt="58cb1dcc-c732-4fa5-b89e-79115a714b1f" border="0"></a> </div>
+    <div class="col order-last"></div>
+</div>
+<div class="row justify-content-start">
+
+</div>
+訪客
+</p>
+{% endif %}
+<main class="container">
+    <!--左側分類toggle-->
+    <div class="row align-items-start">
+        <div class="col-3 contents-sub">
+            <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+                <a class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                    <span class="fs-5 fw-semibold">search by category</span>
+                </a>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse"
+                            data-bs-target="#upper-collapse" aria-expanded="false">
                             上衣
-                            </button>
-                            <div class="collapse" id="upper-collapse">
+                        </button>
+                        <div class="collapse" id="upper-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/index/category/knit" class="link-dark rounded">針織衫</a></li>
                                 <li><a href="/index/category/shirt" class="link-dark rounded">襯衫</a></li>
@@ -60,96 +63,99 @@ Unicorn OFFICAIL
                                 <li><a href="/index/category/tank_top" class="link-dark rounded">吊帶背心</a></li>
                                 <li><a href="/index/category/vest" class="link-dark rounded">背心</a></li>
                             </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#outer-collapse" aria-expanded="false">
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#outer-collapse" aria-expanded="false">
                             外套
-                            </button>
-                            <div class="collapse" id="outer-collapse">
+                        </button>
+                        <div class="collapse" id="outer-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/index/category/jacket" class="link-dark rounded">夾克</a></li>
                                 <li><a href="/index/category/cardigan" class="link-dark rounded">開襟衫</a></li>
                                 <li><a href="/index/category/coat" class="link-dark rounded">大衣</a></li>
                             </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dress-collapse" aria-expanded="false">
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#dress-collapse" aria-expanded="false">
                             洋裝
-                            </button>
-                            <div class="collapse" id="dress-collapse">
+                        </button>
+                        <div class="collapse" id="dress-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/index/category/knit_dress" class="link-dark rounded">針織洋裝</a></li>
                                 <li><a href="/index/category/long_dress" class="link-dark rounded">長洋裝</a></li>
                                 <li><a href="/index/category/shirt_dress" class="link-dark rounded">短洋裝</a></li>
                                 <li><a href="/index/category/cami_dress" class="link-dark rounded">細肩帶洋裝</a></li>
                             </ul>
-                            </div>
-                        </li>
-                        <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#bottom-collapse" aria-expanded="false">
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#bottom-collapse" aria-expanded="false">
                             下身
-                            </button>
-                            <div class="collapse" id="bottom-collapse">
+                        </button>
+                        <div class="collapse" id="bottom-collapse">
                             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li><a href="/index/category/pants" class="link-dark rounded">長褲</a></li>
                                 <li><a href="/index/category/shorts" class="link-dark rounded">短褲</a></li>
                                 <li><a href="/index/category/skirt" class="link-dark rounded">裙子</a></li>
                             </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!--右側最新商品-->
-            <div class="col-9 content-main-upper">
-                <div class="alert alert-light text-center display-6">
-                    最新到貨
-                </div>
-
-                <div class="row row-cols-1 row-cols-md-5 g-4">
-                    {% for n in new_products %}
-
-                    <div class="col">
-                        <a href="/index/details/{{ n.id }}" style="color: black; text-decoration: none;">
-                            <li class="list-group-item card h-100" style="width: 12rem;">
-                                <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
-                                <p class="card-title">{{ n.name }}</p>
-                                <p class="card-text">{{ n.price }}元</p>
-                            </li>
-                        </a>
-                    </div>
-
-                    {% endfor %}
-                </div>
-                
-            </div>
-
-            <!--右側最熱賣商品-->
-            <div class="col-9 offset-md-3 content-main-lower">
-                <div class="alert alert-light text-center display-6">
-                    熱賣商品
-                </div>
-                
-                <div class="row row-cols-1 row-cols-md-5 g-4">
-                    {% for b in best_selling_products %}
-
-                    <div class="col">
-                        <a href="/index/details/{{ b.id }}" style="color: black; text-decoration: none;">
-                            <li class="list-group-item card h-100" style="width: 12rem;">
-                                <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
-                                <p class="card-title">{{ b.name }}</p>
-                                <p class="card-text">{{ b.price }}元</p>
-                            </li>
-                        </a>
-                    </div>
-
-                    {% endfor %}
-                </div>
-
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-    </main>
+
+        <!--右側最新商品-->
+        <div class="col-9 content-main-upper">
+            <div class="alert alert-light text-center display-6">
+                最新到貨
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-5 g-4">
+                {% for n in new_products %}
+
+                <div class="col">
+                    <a href="/index/details/{{ n.id }}" style="color: black; text-decoration: none;">
+                        <li class="list-group-item card h-100" style="width: 12rem;">
+                            <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
+                            <p class="card-title">{{ n.name }}</p>
+                            <p class="card-text">{{ n.price }}元</p>
+                        </li>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!--右側最熱賣商品-->
+        <div class="col-9 offset-md-3 content-main-lower">
+            <div class="alert alert-light text-center display-6">
+                熱賣商品
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-5 g-4">
+                {% for b in best_selling_products %}
+
+                <div class="col">
+                    <a href="/index/details/{{ b.id }}" style="color: black; text-decoration: none;">
+                        <li class="list-group-item card h-100" style="width: 12rem;">
+                            <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
+                            <p class="card-title">{{ b.name }}</p>
+                            <p class="card-text">{{ b.price }}元</p>
+                        </li>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</main>
 {% endblock %}

@@ -13,6 +13,11 @@ Unicorn OFFICAIL | 測試結果
 
 <!--body-->
 {% block content %}
+<script>
+    function redirectToURL() {
+        window.location.href = "{% url 'index' %}";
+    }
+</script>
 <h2>測驗結果</h2>
 <h2>choice: {{choice }}</h2>
 {% if choice == 'R' %}
@@ -33,4 +38,5 @@ Unicorn OFFICAIL | 測試結果
     <li>{{ answer }}</li>
     {% endfor %}
 </ul>
+<button onclick="redirectToURL()">開啟購物旅程</button>
 {% endblock %}

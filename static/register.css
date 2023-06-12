@@ -1,0 +1,50 @@
+section {
+    /* 相对定位 */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片 */
+    background-image: url('https://i.ibb.co/7Q2Tw01/89605717-c429-4ed5-a778-251c0a4738c3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 背景颜色 */
+
+section .color {
+    /* 绝对定位 */
+    position: absolute;
+    /* 使用filter(滤镜) 属性，给图像设置高斯模糊*/
+    filter: blur(200px);
+}
+
+.form {
+    position: absolute;
+    left: 900px;
+    background: linear-gradient(180deg, rgba(46, 71, 160, 0.74) 24.48%, rgba(46, 71, 160, 0) 100%);
+    border: 10px solid rgba(212, 200, 231, 0.21);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    padding: 20px;
+
+}
+
+.form form {
+    padding: 10px;
+}
+
+section button {
+    width: 30%;
+    height: 10%;
+    border-radius: 45%;
+    background: #9b94a2;
+    ;
+    outline: none;
+    border: none;
+    color: #ffffff;
+    flex: 1;
+}

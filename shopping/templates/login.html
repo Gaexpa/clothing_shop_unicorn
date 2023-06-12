@@ -11,12 +11,24 @@ Unicorn OFFICAIL | 會員登入
 <link rel="stylesheet" href="{% static 'login.css' %}">
 {% endblock %}
 
+
 <!--body-->
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">登入</button>
-</form>
-{% endblock %}
+
+<script>
+    function redirectToURL() {
+        window.location.href = "{% url 'register' %}";
+    }
+</script>
+<section>
+    <div class="form">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">登入</button>
+            <button onclick="redirectToURL()">註冊</button>
+        </form>
+        {% endblock %}
+    </div>
+</section>
