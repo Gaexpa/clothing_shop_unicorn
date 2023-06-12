@@ -82,18 +82,17 @@ def checkout(request):
         else:
             # 创建新的订单
             order = Order.objects.create(customer=customer)
-
-        if cart_items.exists():
-            # 将购物车商品添加到订单中
-            for item in cart_items:
-                Order_Product.objects.create(order=order, product=item, amount=1)
-            for item in cart_items:
-                shopping_cart.product.remove(item)
-            # 重定向到结账页面
-            return redirect("order")
-        else:
-            # 购物车为空，无法结账
-            return redirect("cart")
+            if cart_items.exists():
+                # 将购物车商品添加到订单中
+                for item in cart_items:
+                    Order_Product.objects.create(order=order, product=item, amount=1)
+                for item in cart_items:
+                    shopping_cart.product.remove(item)
+                # 重定向到结账页面
+                return redirect("order")
+            else:
+                # 购物车为空，无法结账
+                return redirect("cart")
     else:
         return redirect("index")
 
@@ -103,10 +102,6 @@ def check_order(request):
         customer = Customer.objects.get(user=request.user)
         user = customer.user
         cart_items = customer.shoppingcart.product.all()
-        order_items = customer.order.product.all()
-        first_order = Order.objects.filter(customer=customer.id).first()
-        amounts = Order_Product.objects.filter(order=first_order.id).all()
-
         total_price = 0
         for item in cart_items:
             total_price += item.price
@@ -115,8 +110,6 @@ def check_order(request):
             "customer": customer,
             "cart_items": cart_items,
             "user": user,
-            "amounts": amounts,
-            "order_items": order_items,
             "total_price": total_price,
         }
         return render(request, "checkout.html", context)
