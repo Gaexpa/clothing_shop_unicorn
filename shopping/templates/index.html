@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 <!--head-->
 {% block title %}
 Unicorn OFFICAIL
 {% endblock %}
 
+<!--css-->
+{% block css %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock %}
+
 <!--body-->
 {% block content %}
+{%if request.user.is_authenticated %}
+<p>{{request.user}} 登入成功嘞</p>
+<a href="{% url 'logout' %}">登出</a>
+<img src="https://upload.cc/i1/2023/06/11/4goFJQ.jpg" alt="">
+<p>3</p>
+{% else %}
+<img src="https://i.ibb.co/GFf29cy/58cb1dcc-c732-4fa5-b89e-79115a714b1f.jpg" alt="58cb1dcc-c732-4fa5-b89e-79115a714b1f" border="0"></a>
+<p>訪客</p>
+{% endif %}
 <main class="contents-products">
     <!--左側分類toggle-->
     <div class="contents-sub">
@@ -77,23 +92,22 @@ Unicorn OFFICAIL
             最新到貨
         </div>
 
-        {% for n in new_products %}
-            
-            {% if forloop.counter == 1 or forloop.counter == 6 %}
-                <ul class="list-group list-group-horizontal">
-            {% endif %}
-            <a href="/index/details/{{ n.id }}">
-                <li class="list-group-item card" style="width: 12rem;">
-                    <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
-                    <p class="card-title">{{ n.name }}</p>
-                    <p class="card-text">{{ n.price }}元</p>
-                </li>
-            </a>
-            {% if forloop.counter == 5 %}
-                </ul>
-            {% endif %}
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            {% for n in new_products %}
 
-        {% endfor %}
+            <div class="col">
+                <a href="/index/details/{{ n.id }}" style="color: black; text-decoration: none;">
+                    <li class="list-group-item card h-100" style="width: 12rem;">
+                        <img src="{{ n.photo }}" alt="{{ n.name }}" width="150">
+                        <p class="card-title">{{ n.name }}</p>
+                        <p class="card-text">{{ n.price }}元</p>
+                    </li>
+                </a>
+            </div>
+
+            {% endfor %}
+        </div>
+        
     </div>
 
     <!--右側最熱賣商品-->
@@ -102,23 +116,22 @@ Unicorn OFFICAIL
             熱賣商品
         </div>
         
-        {% for b in best_selling_products %}
-            
-            {% if forloop.counter == 1 or forloop.counter == 6 %}
-                <ul class="list-group list-group-horizontal">
-            {% endif %}
-            <a href="/index/details/{{ b.id }}">
-                <li class="list-group-item card" style="width: 12rem;">
-                    <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
-                    <p class="card-title">{{ b.name }}</p>
-                    <p class="card-text">{{ b.price }}元</p>
-                </li>
-            </a>
-            {% if forloop.counter  == 5 %}
-                </ul>
-            {% endif %}
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            {% for b in best_selling_products %}
 
-        {% endfor %}
+            <div class="col">
+                <a href="/index/details/{{ b.id }}" style="color: black; text-decoration: none;">
+                    <li class="list-group-item card h-100" style="width: 12rem;">
+                        <img src="{{ b.photo }}" alt="{{ b.name }}" width="150">
+                        <p class="card-title">{{ b.name }}</p>
+                        <p class="card-text">{{ b.price }}元</p>
+                    </li>
+                </a>
+            </div>
+
+            {% endfor %}
+        </div>
+
     </div>
 </main>
 {% endblock %}

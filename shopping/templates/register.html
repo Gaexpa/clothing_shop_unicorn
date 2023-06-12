@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!--head-->
+{% block title %}
+Unicorn OFFICAIL | 會員註冊
+{% endblock %}
+
+<!--css-->
+{% block css %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+{% endblock %}
+
+<!--body-->
+{% block content %}
+<h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+{% endblock %}

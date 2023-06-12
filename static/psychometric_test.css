@@ -1,0 +1,6 @@
+.background {
+    background: linear-gradient(0deg, rgba(255, 220, 220, 0.2), rgba(255, 220, 220, 0.2)), linear-gradient(180deg, #F6DDFF 0%, rgba(189, 152, 202, 0) 100%);
+    border: 10px solid #E7D9FF;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
