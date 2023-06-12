@@ -36,18 +36,6 @@
         align-items: center;
     }
 
-    .del {
-        position: absolute;
-        bottom: 10px;
-        right: 0;
-        background-color: rgb(147, 141, 141);
-        color: aliceblue;
-        border-radius: 10px;
-        border-style: none;
-        width: 50px;
-        height: 30px;
-    }
-
     .wrap-checkort {
         width: 280px;
         margin: 0 auto;
@@ -74,8 +62,8 @@
         font-size: 30px;
     }
 
-    input[type="submit"],
-    button {
+    .cal,
+    .index {
         display: block;
         margin-left: 50px;
         margin-bottom: 20px;
@@ -86,6 +74,28 @@
         width: 250px;
         height: 60px;
     }
+
+    .del {
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        background-color: rgb(147, 141, 141);
+        color: aliceblue;
+        border-radius: 10px;
+        border-style: none;
+        width: 50px;
+        height: 30px;
+    }
+
+    .empty {
+        margin: 0 auto;
+    }
+
+    .buy {
+        width: 250px;
+        margin: 0 auto;
+        margin-top: 250px;
+    }
 </style>
 
 <div class="car col-md-8">
@@ -93,73 +103,66 @@
         <h2>購物車</h2>
     </div>
     {% if cart_items %}
-    <form method="post" action="{% url 'checkout' %}">
+    <form method="post" action="{% url 'check_order' %}">
         <div class="wrap">
             <div class="car-list col-md-8">
                 {% for x in cart_items %}
                 <div class="card mb-3">
-                    <div class="row gx-0">
-                        <div class="photo col-md-4 mb-3">
-                            <img class="clothes" src="{{x.photo}}" width="200">
-                        </div>
-                        <div class="col-md-6 mb-3 ">
-                            <div class="card-body">
-                                <h5 class="card-title">{{x.name}}</h5>
-                                <div class="item-information">
-                                    <table>
-                                        <tr>
-                                            <th> 顏色：</th>
-                                            <td>{{x.color}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>尺寸：</th>
-                                            <td>{{x.size}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>價格：</th>
-                                            <td>{{x.price}}</td>
-                                        </tr>
-                                    </table>
-                                    <div class="item-number">
-                                        <select name="quantity_{{ x.id }}" id="qty">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                        <p style=" margin: 0 auto;">件</p>
+                    <form method="post" action="{% url 'delete_item' x.id %}">
+                        <div class="row gx-0">
+                            <div class="photo col-md-4 mb-3">
+                                <img class="clothes" src="{{x.photo}}" width="200">
+                            </div>
+                            <div class="col-md-6 mb-3 ">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{x.name}}</h5>
+                                    <div class="item-information">
+                                        <table>
+                                            <tr>
+                                                <th> 顏色：</th>
+                                                <td>{{x.color}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>尺寸：</th>
+                                                <td>{{x.size}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>價格：</th>
+                                                <td>{{x.price}}</td>
+                                            </tr>
+                                        </table>
+
                                     </div>
+                                </div>
+
+                                <div class="delete col-md-2 mb-3">
+                                    {% csrf_token %}
+                                    <input class="del" type="submit" value="刪除"
+                                        formaction="{% url 'delete_item' x.id %}">
                                 </div>
                             </div>
                         </div>
-                        <form method="post" action="{% url 'delete_item' x.id %}">
-                            {% csrf_token %}
-                            <div class="delete col-md-2 mb-3">
-                                <button class="del" type="submit">刪除</button>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
                 {% endfor %}
             </div>
             <div class="wrap-checkort col-md-4">
                 <input type="hidden" name="item_count" value="{{ cart_items.count }}">
-                <input type="submit" name="checkout" value="結算">
+                <input class="cal" type="submit" name="checkout" value="前往結帳">
                 <form action="/index">
-                    <input type="submit" value="繼續購物" />
+                    <input class="index" type="submit" value="繼續購物" />
                 </form>
             </div>
         </div>
     </form>
 </div>
 {% else %}
-<p>Your cart is empty.</p>
+<div class="empty">
+    <p>Your cart is empty.</p>
+    <form class="buy" action="/index">
+        <input class="index" type="submit" value="繼續購物" />
+    </form>
+</div>
 {% endif %}
 </div>
 {% endblock %}
