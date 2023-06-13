@@ -1,0 +1,27 @@
+#result_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(122, 95, 148);
+
+}
+
+#result_data h2 {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+
+    color: rgb(122, 95, 148)
+}
+
+button {
+    background-color: rgb(122, 95, 148);
+    color: rgb(245, 236, 248);
+
+}

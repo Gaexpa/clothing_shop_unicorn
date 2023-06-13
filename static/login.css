@@ -33,16 +33,18 @@ section .color {
 
 }
 
+
+
 .form form {
     padding: 10px;
 }
 
-section button {
+
+.form button {
     width: 30%;
     height: 10%;
     border-radius: 45%;
     background: #9b94a2;
-    ;
     outline: none;
     border: none;
     color: #ffffff;
