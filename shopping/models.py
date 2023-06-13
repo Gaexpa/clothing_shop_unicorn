@@ -113,7 +113,7 @@ class ShoppingCart_Product(models.Model):
 
 #訂單
 class Order(models.Model):
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     product = models.ManyToManyField(Product, through='Order_Product', through_fields=('order', 'product'))
     created_date = models.DateField(auto_now_add=True)
     status_list=[('unfinished', '未完成'), ('finished', '完成')]
@@ -153,7 +153,7 @@ class ShippingInfo(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE)
     receiver = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
-    shipping_date = models.DateField()
+    shipping_date = models.DateField(auto_now_add=True)
     shipping_cost = models.PositiveIntegerField(default=0)
     shipping_address = models.CharField(max_length=128)
     shipping_status_list = [('undelivered', '尚未發貨'), ('delivering', '送貨中'), ('delivered', '已送達')]

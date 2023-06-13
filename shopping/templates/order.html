@@ -114,36 +114,39 @@
     <div class="wrap">
         <div class="car-list col-md-8">
             {% for x in order_items %}
-            <div class="card mb-3">
-                <form method="post" action="{% url 'delete_item' x.id %}">
-                    <div class="row gx-0">
-                        <div class="photo col-md-4 mb-3">
-                            <img class="clothes" src="{{x.photo}}" width="200">
-                        </div>
-                        <div class="col-md-6 mb-3 ">
-                            <div class="card-body">
-                                <h5 class="card-title">{{x.name}}</h5>
-                                <div class="item-information">
-                                    <table>
-                                        <tr>
-                                            <th> 顏色：</th>
-                                            <td>{{x.color}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>尺寸：</th>
-                                            <td>{{x.size}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>價格：</th>
-                                            <td>{{x.price}}</td>
-                                        </tr>
-                                    </table>
+                <div>第{{ forloop.counter }}筆訂單</div>
+                {% for y in x %}
+                <div class="card mb-3">
+                    <form method="post" action="{% url 'delete_item' y.id %}">
+                        <div class="row gx-0">
+                            <div class="photo col-md-4 mb-3">
+                                <img class="clothes" src="{{y.photo}}" width="200">
+                            </div>
+                            <div class="col-md-6 mb-3 ">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{y.name}}</h5>
+                                    <div class="item-information">
+                                        <table>
+                                            <tr>
+                                                <th> 顏色：</th>
+                                                <td>{{y.color}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>尺寸：</th>
+                                                <td>{{y.size}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>價格：</th>
+                                                <td>{{y.price}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+                {% endfor %}
             {% endfor %}
         </div>
 

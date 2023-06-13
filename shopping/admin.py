@@ -44,7 +44,7 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Order, OrderAdmin)
 
 class Order_ProductAdmin(admin.ModelAdmin):
-    list_display=('order', 'product')
+    list_display=('order_id', 'product_id', 'order', 'product')
 admin.site.register(Order_Product, Order_ProductAdmin)
 
 # 留言

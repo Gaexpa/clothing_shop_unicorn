@@ -233,16 +233,12 @@ def delete_item(request, item_id):
     else:
         return redirect("login")  # 重定向到登录页面
 
-
+# 確認訂單資訊
 def check_order(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(user=request.user)
         user = customer.user
         cart_items = customer.shoppingcart.product.all()
-        order_items = customer.order.product.all()
-        first_order = Order.objects.filter(customer=customer.id).first()
-        amounts = Order_Product.objects.filter(order=first_order.id).all()
-
         total_price = 0
         for item in cart_items:
             total_price += item.price
@@ -251,48 +247,99 @@ def check_order(request):
             "customer": customer,
             "cart_items": cart_items,
             "user": user,
-            "amounts": amounts,
-            "order_items": order_items,
             "total_price": total_price,
         }
         return render(request, "checkout.html", context)
     else:
         return redirect("cart")
 
-
+# 下訂單
 def checkout(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(user=request.user)
         shopping_cart = customer.shoppingcart
         cart_items = customer.shoppingcart.product.all()
 
-        unfinished_orders = Order.objects.filter(customer=customer, status="unfinished")
-        if unfinished_orders.exists():
-            order = unfinished_orders.first()
-        else:
+
+
+        if cart_items.exists():  #購物車內有東西
             # 创建新的订单
             order = Order.objects.create(customer=customer)
-
-        if cart_items.exists():
+            unfinished_orders = Order.objects.filter(customer=customer, status="unfinished")
             # 将购物车商品添加到订单中
             for item in cart_items:
                 Order_Product.objects.create(order=order, product=item, amount=1)
+            
             for item in cart_items:
+                # 購買商品庫存減少
+                target_product = Product.objects.get(id=item.id)
+                order_product_amount = Order_Product.objects.get(order_id = order.id, product_id = item.id).amount
+                target_product.quantity =  target_product.quantity - order_product_amount
+                # 將購物車商品加到訂單後，刪除
                 shopping_cart.product.remove(item)
+            
             # 重定向到结账页面
             return redirect("order")
         else:
             # 购物车为空，无法结账
             return redirect("cart")
+
+        
+
+        # unfinished_orders = Order.objects.filter(customer=customer, status="unfinished")
+        # if unfinished_orders.exists():
+        #     order = unfinished_orders.first()
+        # else:
+        #     # 创建新的订单
+        #     order = Order.objects.create(customer=customer)
+        #     if cart_items.exists():
+        #         # 将购物车商品添加到订单中
+        #         for item in cart_items:
+        #             Order_Product.objects.create(order=order, product=item, amount=1)
+        #         for item in cart_items:
+        #             shopping_cart.product.remove(item)
+        #         # 重定向到结账页面
+        #         return redirect("order")
+        #     else:
+        #         # 购物车为空，无法结账
+        #         return redirect("cart")
     else:
         return redirect("index")
 
 
-
+# 查看訂單
 def order(request):
+    # 找user的單，可能有很多張
     customer = Customer.objects.get(user=request.user)
-    order_items = customer.order.product.all()
+    orders = Order.objects.filter(customer = customer)
+
+    # order_list放不同訂單, 每個訂單裡有product_list放不同商品
+    order_list = []
+    for o in orders:
+        product_list = []
+        order_products = Order_Product.objects.filter(order_id = o.id)
+        for op in order_products:
+            product = Product.objects.get(id = op.product_id)
+            product_list.append(product)
+        
+        order_list.append(product_list)
+        
+    # # order_item_list是放訂單商品的list，order_item_list[n]是不同訂單
+    # order_items_list = [][20]  #一張單商品數不能超過20，20可以改，但因為第二層要固定size所以才填數字
+    # order_index = 0
+    # for op in order_products:
+    #     for line in op:
+    #         product = Product.objects.get(id = line.product_id)
+    #         order_items_list[order_index].append()
+    #         order_index += 1
+    
+
+
+    # 發現model裡 Order.customer是OneToOneField(一對一)Customer，更改成ForeignKey
+    # 因為一個客人不應該一次只能有一個訂單，應該可以有多個，改了後下面的會有錯
+    # customer = Customer.objects.get(user=request.user)
+    # order_items = customer.order.product.all()
     context = {
-        "order_items": order_items,
+        "order_items" : order_list,
     }
     return render(request, "order.html", context)
