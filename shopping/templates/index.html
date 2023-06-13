@@ -15,14 +15,28 @@ Unicorn OFFICAIL
 {% block content %}
     {%if request.user.is_authenticated %}
         <p>
-            <img src="https://upload.cc/i1/2023/06/11/4goFJQ.jpg" alt="">  <!--跑不出來-->
+            <div class="row justify-content-start">
+                <div class="col-4 order-first"></div>
+                <div class="col"><img src="https://i.ibb.co/Q6V7TmG/012e47e5-e520-4c86-a560-39f60c8d3457.jpg" width="400px" height="400px" alt=""> </div>
+                <div class="col order-last"></div>
+            </div>
+            
             {{request.user}} 登入成功嘞 
             <br>
             <a href="{% url 'logout' %}">登出</a>
         </p>
     {% else %}
-        <img src="https://i.ibb.co/GFf29cy/58cb1dcc-c732-4fa5-b89e-79115a714b1f.jpg" alt="58cb1dcc-c732-4fa5-b89e-79115a714b1f" border="0"></a>
-        <p>訪客</p>
+        <p>
+            <div class="row justify-content-start">
+                <div class="col-4 order-first"></div>
+                <div class="col"><img src="https://i.ibb.co/GFf29cy/58cb1dcc-c732-4fa5-b89e-79115a714b1f.jpg" width="400px" height="400px" alt="58cb1dcc-c732-4fa5-b89e-79115a714b1f" border="0"></a> </div>
+                <div class="col order-last"></div>
+            </div>
+        <div class="row justify-content-start">
+            
+        </div>
+            訪客
+        </p>
     {% endif %}
     <main class="container">
         <!--左側分類toggle-->
