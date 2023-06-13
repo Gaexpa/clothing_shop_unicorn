@@ -15,142 +15,146 @@
 
 <!--body-->
 {% block content %}
-    <!--左側分類toggle-->
-    <div class="contents-sub">
-        <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-            <a class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                <span class="fs-5 fw-semibold">search by category</span>
-            </a>
-            <ul class="list-unstyled ps-0">
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#upper-collapse" aria-expanded="false">
-                    上衣
-                    </button>
-                    <div class="collapse" id="upper-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="/index/category/knit" class="link-dark rounded">針織衫</a></li>
-                        <li><a href="/index/category/shirt" class="link-dark rounded">襯衫</a></li>
-                        <li><a href="/index/category/sweat" class="link-dark rounded">大學T</a></li>
-                        <li><a href="/index/category/t_shirt" class="link-dark rounded">T恤</a></li>
-                        <li><a href="/index/category/tank_top" class="link-dark rounded">吊帶背心</a></li>
-                        <li><a href="/index/category/vest" class="link-dark rounded">背心</a></li>
-                    </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#outer-collapse" aria-expanded="false">
-                    外套
-                    </button>
-                    <div class="collapse" id="outer-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="/index/category/jacket" class="link-dark rounded">夾克</a></li>
-                        <li><a href="/index/category/cardigan" class="link-dark rounded">開襟衫</a></li>
-                        <li><a href="/index/category/coat" class="link-dark rounded">大衣</a></li>
-                    </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dress-collapse" aria-expanded="false">
-                    洋裝
-                    </button>
-                    <div class="collapse" id="dress-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="/index/category/knit_dress" class="link-dark rounded">針織洋裝</a></li>
-                        <li><a href="/index/category/long_dress" class="link-dark rounded">長洋裝</a></li>
-                        <li><a href="/index/category/shirt_dress" class="link-dark rounded">短洋裝</a></li>
-                        <li><a href="/index/category/cami_dress" class="link-dark rounded">細肩帶洋裝</a></li>
-                    </ul>
-                    </div>
-                </li>
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#bottom-collapse" aria-expanded="false">
-                    下身
-                    </button>
-                    <div class="collapse" id="bottom-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="/index/category/pants" class="link-dark rounded">長褲</a></li>
-                        <li><a href="/index/category/shorts" class="link-dark rounded">短褲</a></li>
-                        <li><a href="/index/category/skirt" class="link-dark rounded">裙子</a></li>
-                    </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!--右側目標商品-->
-    <div class="container pt-5">
-        <div class=" d-flex justify-content-center">
-            <div class="col-md-4">
-                <img src={{ product.photo }} alt={{ product.name }} width="300">
-            </div>
-            <div class="col-md-4">
-                <div class="card-header">
-                    <h5 class="card_title">{{ product.name }}</h5>
-                    <p class="card-text">NTD {{ product.price }}</p>
-                </div>
-                <!-- <div> 測試用
-                    {% for p in product_dict_list%}
-                        p0:{{ p.0 }}<br>p1:{{ p.1 }}<br>p2:{{ p.2 }}<br>p3:{{ p.3 }} <br><br>  
-                    {% endfor %}
-                </div> 
-                
-                <div>
-                    {% for p in product_dict_list%}
-                        p0:{{ p.0.size }}<br>p1:{{ p.1.size }}<br>p2:{{ p.2 }}<br>p3:{{ p.3 }} <br><br>  
-                    {% endfor %}
-                </div>
-                <div>
-                    {% for p in product_dict_list%}  雙重forloop的 index變數不得為實體的index
-                        {% for i in list %}
-                            <p> {{p.i}} </p>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
-                -->
-                <div class="row row-cols-1 row-cols-md-1 g-4">
-                    {% for p in product_dict_list%}  <!--range(0, 4)-->
-                        <div class="col">
-                            <div class="card">
-                                <div class="row g-0">
-                                    <div class="col-sm-4">
-                                        <img src={{ p.0.photo }} alt={{ p.0.name }} width="100">
-                                    </div>
-                                    <div class="col-sm-4 card-body">
-                                    
-                                    <form method="get" action="/index/details/{{ p.0.id }}">
-                                        <label for="size-select"> {{ p.0.color }} </label>
-                                        <select id="size-select" name="size-select">
-                                        
-                                            <option value= {{ p.0.id}} > {{ p.0.size }} </option>
-                                            <option value= {{ p.1.id }} > {{ p.1.size }} </option>
-                                            <option value= {{ p.2.id }} > {{ p.2.size }} </option>
-                                            <option value= {{ p.3.id }} > {{ p.3.size }} </option>
-
-                                        </select>
-                                        <p><br></p>  <!--間隔-->
-                                        <div class = "d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="submit" class="btn btn-sm btn-outline-secondary" name="follow_list">加入關注清單</button>
-                                                <button type="submit" class="btn btn-sm btn-outline-secondary" name="cart">加入購物車</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    
-                                </div>
-                                </div>
-                                
+    <main class="container">
+        <!--左側分類toggle-->
+        <div class="row align-items-start">
+            <div class="col-1 contents-sub">
+                <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+                    <a class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                        <span class="fs-5 fw-semibold">search by category</span>
+                    </a>
+                    <ul class="list-unstyled ps-0">
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#upper-collapse" aria-expanded="false">
+                            上衣
+                            </button>
+                            <div class="collapse" id="upper-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/index/category/knit" class="link-dark rounded">針織衫</a></li>
+                                <li><a href="/index/category/shirt" class="link-dark rounded">襯衫</a></li>
+                                <li><a href="/index/category/sweat" class="link-dark rounded">大學T</a></li>
+                                <li><a href="/index/category/t_shirt" class="link-dark rounded">T恤</a></li>
+                                <li><a href="/index/category/tank_top" class="link-dark rounded">吊帶背心</a></li>
+                                <li><a href="/index/category/vest" class="link-dark rounded">背心</a></li>
+                            </ul>
                             </div>
-                        </div>
-                    {% endfor %}
-
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#outer-collapse" aria-expanded="false">
+                            外套
+                            </button>
+                            <div class="collapse" id="outer-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/index/category/jacket" class="link-dark rounded">夾克</a></li>
+                                <li><a href="/index/category/cardigan" class="link-dark rounded">開襟衫</a></li>
+                                <li><a href="/index/category/coat" class="link-dark rounded">大衣</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dress-collapse" aria-expanded="false">
+                            洋裝
+                            </button>
+                            <div class="collapse" id="dress-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/index/category/knit_dress" class="link-dark rounded">針織洋裝</a></li>
+                                <li><a href="/index/category/long_dress" class="link-dark rounded">長洋裝</a></li>
+                                <li><a href="/index/category/shirt_dress" class="link-dark rounded">短洋裝</a></li>
+                                <li><a href="/index/category/cami_dress" class="link-dark rounded">細肩帶洋裝</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#bottom-collapse" aria-expanded="false">
+                            下身
+                            </button>
+                            <div class="collapse" id="bottom-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/index/category/pants" class="link-dark rounded">長褲</a></li>
+                                <li><a href="/index/category/shorts" class="link-dark rounded">短褲</a></li>
+                                <li><a href="/index/category/skirt" class="link-dark rounded">裙子</a></li>
+                            </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-footer">
-                    一些話
-                </div>
-
             </div>
-            
-        </div>        
-    </div>
+
+            <!--右側目標商品-->
+            <div class="col-11 container">
+                <div class=" d-flex justify-content-center">
+                    <div class="col-md-4">
+                        <img src={{ product.photo }} alt={{ product.name }} width="300">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-header">
+                            <h5 class="card_title">{{ product.name }}</h5>
+                            <p class="card-text">NTD {{ product.price }}</p>
+                        </div>
+                        <!-- <div> 測試用
+                            {% for p in product_dict_list%}
+                                p0:{{ p.0 }}<br>p1:{{ p.1 }}<br>p2:{{ p.2 }}<br>p3:{{ p.3 }} <br><br>  
+                            {% endfor %}
+                        </div> 
+                        
+                        <div>
+                            {% for p in product_dict_list%}
+                                p0:{{ p.0.size }}<br>p1:{{ p.1.size }}<br>p2:{{ p.2 }}<br>p3:{{ p.3 }} <br><br>  
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for p in product_dict_list%}  雙重forloop的 index變數不得為實體的index
+                                {% for i in list %}
+                                    <p> {{p.i}} </p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                        -->
+                        <div class="row row-cols-1 row-cols-md-1 g-4">
+                            {% for p in product_dict_list%}  <!--range(0, 4)-->
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="row g-0">
+                                            <div class="col-sm-4">
+                                                <img src={{ p.0.photo }} alt={{ p.0.name }} width="100">
+                                            </div>
+                                            <div class="col-sm-4 card-body">
+                                            
+                                            <form method="get" action="/index/details/{{ p.0.id }}">
+                                                <label for="size-select"> {{ p.0.color }} </label>
+                                                <select id="size-select" name="size-select">
+                                                
+                                                    <option value= {{ p.0.id}} > {{ p.0.size }} </option>
+                                                    <option value= {{ p.1.id }} > {{ p.1.size }} </option>
+                                                    <option value= {{ p.2.id }} > {{ p.2.size }} </option>
+                                                    <option value= {{ p.3.id }} > {{ p.3.size }} </option>
+
+                                                </select>
+                                                <p><br></p>  <!--間隔-->
+                                                <div class = "d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group">
+                                                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="follow_list">加入關注清單</button>
+                                                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="cart">加入購物車</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="card-footer">
+                            一些話
+                        </div>
+
+                    </div>
+                    
+                </div>        
+            </div>
+        </div>
+    </main>
 {% endblock %}
