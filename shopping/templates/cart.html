@@ -108,7 +108,7 @@
             <div class="car-list col-md-8">
                 {% for x in cart_items %}
                 <div class="card mb-3">
-                    <form method="post" action="{% url 'delete_item' x.id %}">
+                    <form method="post" action="{% url 'delete_cart_item' x.id %}">
                         <div class="row gx-0">
                             <div class="photo col-md-4 mb-3">
                                 <img class="clothes" src="{{x.photo}}" width="200">
@@ -138,7 +138,7 @@
                                 <div class="delete col-md-2 mb-3">
                                     {% csrf_token %}
                                     <input class="del" type="submit" value="刪除"
-                                        formaction="{% url 'delete_item' x.id %}">
+                                        formaction="{% url 'delete_cart_item' x.id %}">
                                 </div>
                             </div>
                         </div>

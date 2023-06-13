@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}
+關注清單
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .car {
+        margin: 0 auto;
+    }
+
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    .card {
+        border-style: none;
+        border-radius: 0px;
+        border-bottom: 2px black solid;
+    }
+
+    .clothes {
+        width: 130px;
+    }
+
+    .card-title {
+        text-align: left;
+    }
+
+    .item-number {
+        width: 100px;
+        display: flex;
+        align-items: center;
+    }
+
+    .wrap-checkort {
+        width: 280px;
+        margin: 0 auto;
+        text-align: right;
+        text-size-adjust: 100%;
+    }
+
+    .total {
+        background-color: rgb(230, 233, 235);
+        text-align: center;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        border-bottom: 1px black solid;
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .money {
+        margin: 0 auto;
+        padding: 10px;
+        font-size: 30px;
+    }
+
+    .cal,
+    .index {
+        display: block;
+        margin-left: 50px;
+        margin-bottom: 20px;
+        background-color: black;
+        color: aliceblue;
+        border-radius: 10px;
+        border-style: none;
+        width: 250px;
+        height: 60px;
+    }
+
+    .del {
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        background-color: rgb(147, 141, 141);
+        color: aliceblue;
+        border-radius: 10px;
+        border-style: none;
+        width: 50px;
+        height: 30px;
+    }
+
+    .empty {
+        margin: 0 auto;
+    }
+
+    .buy {
+        width: 250px;
+        margin: 0 auto;
+        margin-top: 250px;
+    }
+</style>
+
+<div class="car col-md-8">
+    <div class="car-head mt-3">
+        <h2>關注清單</h2>
+    </div>
+    {% if items %}
+    
+    <div class="wrap">
+        <div class="car-list col-md-8">
+            {% for x in items %}
+            <div class="card mb-3">
+                <form method="post" action="{% url 'delete_follow_list_item' x.id %}">
+                    <div class="row gx-0">
+                        <div class="photo col-md-4 mb-3">
+                            <img class="clothes" src="{{x.photo}}" width="200">
+                        </div>
+                        <div class="col-md-6 mb-3 ">
+                            <div class="card-body">
+                                <h5 class="card-title">{{x.name}}</h5>
+                                <div class="item-information">
+                                    <table>
+                                        <tr>
+                                            <th> 顏色：</th>
+                                            <td>{{x.color}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>尺寸：</th>
+                                            <td>{{x.size}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>價格：</th>
+                                            <td>{{x.price}}</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                            <div class="delete col-md-2 mb-3">
+                                {% csrf_token %}
+                                <input class="del" type="submit" value="刪除"
+                                    formaction="{% url 'delete_follow_list_item' x.id %}">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="wrap-checkort col-md-4">
+            <form action="/index">
+                <input class="index" type="submit" value="繼續購物" />
+            </form>
+        </div>
+    </div>
+    
+</div>
+{% else %}
+<div class="empty">
+    <p>Your followlist is empty.</p>
+    <form class="buy" action="/index">
+        <input class="index" type="submit" value="繼續購物" />
+    </form>
+</div>
+{% endif %}
+</div>
+{% endblock %}

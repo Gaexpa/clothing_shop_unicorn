@@ -117,7 +117,7 @@
                 <div>第{{ forloop.counter }}筆訂單</div>
                 {% for y in x %}
                 <div class="card mb-3">
-                    <form method="post" action="{% url 'delete_item' y.id %}">
+                    <form method="post" action="{% url 'delete_cart_item' y.id %}">
                         <div class="row gx-0">
                             <div class="photo col-md-4 mb-3">
                                 <img class="clothes" src="{{y.photo}}" width="200">

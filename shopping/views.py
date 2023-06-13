@@ -24,7 +24,11 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def login(request):
-    if request.method == 'POST':
+    # 以登入就轉到訂單
+    if request.user.is_authenticated:
+        return redirect('order')
+    
+    elif request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -200,15 +204,11 @@ def details(request, id):
 
         if 'follow_list' in request.GET:
             follow_list = FollowList.objects.get(customer = customer)
-            FollowList.objects.create(followList = follow_list, product = product)
+            FollowList_Product.objects.create(followList = follow_list, product = product)
         else:
             # 'cart' in request.GET
             cart = ShoppingCart.objects.get(customer = customer)
             ShoppingCart_Product.objects.create(shoppingCart = cart, product = product) 
-
-        
-        
-
 
     # context
     context = {
@@ -224,14 +224,39 @@ def details(request, id):
 def search(request):
     query = request.GET.get("search")
     products = None
-    products = Product.objects.filter(name__icontains = query)
+    query = "%"+query+"%"
+    products = Product.objects.raw('SELECT * FROM shopping_product WHERE name LIKE %s GROUP BY name', [query])
+    #products = Product.objects.filter(name__icontains = query)
     context = {
         'products': products,
     }
     return render(request, 'search.html', context=context)
 
 
+# 查看關注清單
+def follow_list(request):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(user=request.user)
+        follow_list_items = customer.followlist.product.all()
 
+        context = {
+            "items": follow_list_items,
+        }
+        return render(request, "follow_list.html", context)
+    else:
+        return redirect("login")  # 重定向到登录页面
+    
+def delete_follow_list_item(request, item_id):
+    if request.user.is_authenticated:  # 检查用户是否已登录
+        customer = Customer.objects.get(user=request.user)
+        follow_list = customer.followlist
+        item = follow_list.product.get(id=item_id)
+        follow_list.product.remove(item)
+        return redirect("follow_list")
+    else:
+        return redirect("login")  # 重定向到登录页面
+
+# 查看購物車
 def view_cart(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(user=request.user)
@@ -245,7 +270,7 @@ def view_cart(request):
         return redirect("login")  # 重定向到登录页面
 
 
-def delete_item(request, item_id):
+def delete_cart_item(request, item_id):
     if request.user.is_authenticated:  # 检查用户是否已登录
         customer = Customer.objects.get(user=request.user)
         shopping_cart = customer.shoppingcart
@@ -365,3 +390,4 @@ def order(request):
         "order_items" : order_list,
     }
     return render(request, "order.html", context)
+
