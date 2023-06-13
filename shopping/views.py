@@ -11,6 +11,9 @@ from shopping.forms import RegistrationForm
 
 
 def index(request):
+    if 'color' not in request.session:
+        request.session['test_answers'] = []
+        request.session['test_answers']='rgb(160, 134, 180)'
     template = loader.get_template('index.html')
     new_products = Product.objects.raw('SELECT * FROM shopping_product GROUP BY name ORDER BY id DESC LIMIT 10')
     #new_products = Product.objects.order_by("-id").values('name').distinct()[:10]

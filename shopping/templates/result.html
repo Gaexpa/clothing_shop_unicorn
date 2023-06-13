@@ -8,29 +8,93 @@ Unicorn OFFICAIL | 測試結果
 
 <!--css-->
 {% block css %}
-
+<link rel="stylesheet" href="{% static 'result.css' %}">
 {% endblock %}
 
 <!--body-->
 {% block content %}
-<h2>測驗結果</h2>
-<h2>choice: {{choice }}</h2>
-{% if choice == 'R' %}
-<img src="https://i.ibb.co/nfJbDXj/e90d6f4c-0a77-4d1b-8eac-07af8ffd18c6.jpg" alt="e90d6f4c-0a77-4d1b-8eac-07af8ffd18c6"
-    border="0">
-{% elif choice == 'B' %}
-<img src="https://i.ibb.co/GCgdDHZ/f9be54dc-298d-46d4-ae64-e3de96e508ec.jpg" alt="f9be54dc-298d-46d4-ae64-e3de96e508ec"
-    border="0">
-{% elif choice == 'G' %}
-<a href="https://ibb.co/9sXqXKV"><img src="https://i.ibb.co/nz2D2dn/e80377d4-44c3-4bc7-8101-9920b641b41c.jpg"
-        alt="e80377d4-44c3-4bc7-8101-9920b641b41c" border="0"></a>
-{% elif choice == 'Y' %}
-<img src="https://upload.cc/i1/2023/06/11/4goFJQ.jpg" alt="yellow">
-{% endif %}
-<h3>Answers:</h3>
+<script>
+    function redirectToURL() {
+        window.location.href = "{% url 'index' %}";
+    }
+</script>
+
+
+<div id="result_data">
+    <h2>測驗結果</h2>
+
+
+
+
+    {% if choice == 'R' %}
+    <script>
+        // 使用 JavaScript 修改 CSS 選擇器的參數
+        var resultDataDiv = document.getElementById("result_data");
+        resultDataDiv.style.backgroundColor = "rgb(242, 174, 174)";
+    </script>
+    <div style="background-color:rgb(242, 174, 174)">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://i.ibb.co/nfJbDXj/e90d6f4c-0a77-4d1b-8eac-07af8ffd18c6.jpg"
+                alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text" style="color: firebrick;">熱愛冒險的紅色獨角獸</p>
+            </div>
+        </div>
+    </div>
+
+    {% elif choice == 'B' %}
+    <script>
+        var resultDataDiv = document.getElementById("result_data");
+        resultDataDiv.style.backgroundColor = "rgb(150, 149, 230)";
+    </script>
+    <div style="background-color:rgb(150, 149, 230)">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://i.ibb.co/GCgdDHZ/f9be54dc-298d-46d4-ae64-e3de96e508ec.jpg"
+                alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text" style="color: rgb(37, 16, 89);">神秘及喜歡學術的藍色獨角獸</p>
+            </div>
+        </div>
+    </div>
+
+    {% elif choice == 'G' %}
+    <script>
+        var resultDataDiv = document.getElementById("result_data");
+        resultDataDiv.style.backgroundColor = "rgb(131, 202, 180)";
+    </script>
+    <div style="background-color:rgb(131, 202, 180)">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://i.ibb.co/nz2D2dn/e80377d4-44c3-4bc7-8101-9920b641b41c.jpg"
+                alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text" style="color: rgb(25, 56, 49);">優雅且具有生命力的綠色獨角獸</p>
+            </div>
+        </div>
+    </div>
+
+    {% elif choice == 'Y' %}
+    <script>
+        var resultDataDiv = document.getElementById("result_data");
+        resultDataDiv.style.backgroundColor = "rgb(176, 176, 140)";
+    </script>
+    <div style="background-color:rgb(176, 176, 140)">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://upload.cc/i1/2023/06/11/4goFJQ.jpg" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text" style="color: rgb(217, 173, 43);">善良像是小太陽的黃色獨角獸</p>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    <button onclick="redirectToURL()">開啟購物旅程</button>
+</div>
+
+<!-- <h3>Answers:</h3>
 <ul>
     {% for answer in answers %}
     <li>{{ answer }}</li>
     {% endfor %}
-</ul>
+</ul> -->
+
 {% endblock %}

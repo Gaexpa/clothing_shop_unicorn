@@ -14,14 +14,20 @@ Unicorn OFFICAIL | 心理測驗
 <!--body-->
 {% block content %}
 <div class="background">
-    <form method="post" action="{% url 'psychometric_test' %}">
+    <div>
+        <img class="rotate_img" src="https://i.ibb.co/j3b37Gv/471bb3e9-fc4a-428a-a69a-fc0abe8954c9-removebg-preview.png"
+            alt="">
+    </div>
+    <form class="radio_form" method="post" action="{% url 'psychometric_test' %}">
         {% csrf_token %}
         <h3>問題{{ question.id }}：</h3>
         <p>{{ question.text }}</p>
         {% for choice in question.choices %}
-        <input type="radio" name="answer" value="{{ choice }}"> {{ choice }}<br>
-        {% endfor %}
-        <input type="submit" value="下一題">
+        <label for="answer">
+            <input type="radio" name="answer" value="{{ choice }}"> {{ choice }}<br>
+            <img src="https://i.ibb.co/09PHTN7/2a0031ab-cabc-4f78-8a96-703759c34c63.jpg" alt="照片">
+            {% endfor %}
+            <input type="submit" value="下一題">
     </form>
 </div>
 {% endblock %}

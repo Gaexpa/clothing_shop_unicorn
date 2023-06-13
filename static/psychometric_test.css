@@ -2,5 +2,51 @@
     background: linear-gradient(0deg, rgba(255, 220, 220, 0.2), rgba(255, 220, 220, 0.2)), linear-gradient(180deg, #F6DDFF 0%, rgba(189, 152, 202, 0) 100%);
     border: 10px solid #E7D9FF;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #EFEFF1;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
 
+    /* 垂直置中 */
+
+}
+
+
+.rotate_img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    animation: rotate 10s linear infinite;
+
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.radio_form {
+    display: block;
+    flex-direction: row;
+    align-items: center;
+}
+
+.radio_form label {
+    display: flex;
+    align-items: center;
+    margin-right: 2px;
+}
+
+.radio_form img {
+    width: 200px;
 }

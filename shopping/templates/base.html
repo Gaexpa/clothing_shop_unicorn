@@ -1,139 +1,141 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-        .banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            display: block;
-            z-index: 9;
-        }
+        <style>
+            .banner {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                display: block;
+                z-index: 9;
+            }
 
-        .white {
-            background-color: white;
+            .white {
+                background-color: white;
 
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 50%;
-        }
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 50%;
+            }
 
-        @font-face {
-            font-family: 'oxxo';
-            src: url('setofont.ttf');
-        }
+            @font-face {
+                font-family: 'oxxo';
+                src: url('setofont.ttf');
+            }
 
-        .p1 {
-            display: inline;
-            font-family: "Microsoft JhengHei;", "oxxo", monospace;
-            font-weight: bold;
-            color: black;
-            height: 39px;
-            font-size: 50px;
-        }
+            .p1 {
+                display: inline;
+                font-family: "Microsoft JhengHei;", "oxxo", monospace;
+                font-weight: bold;
+                color: black;
+                height: 39px;
+                font-size: 50px;
+            }
 
-        .top {
-            background-color: rgb(160, 134, 180);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            .top {
+                background-color: rgb(160, 134, 180);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
 
-        }
+            }
 
-        .form-border {
+            .form-border {
 
-            float: right;
-            position: absolute;
-            width: 307px;
-            left: 1088px;
-            top: 83px;
-            border-bottom: 0.5px solid rgb(22, 11, 33);
-        }
+                float: right;
+                position: absolute;
+                width: 307px;
+                left: 1088px;
+                top: 83px;
+                border-bottom: 0.5px solid rgb(22, 11, 33);
+            }
 
-        .form-border input {
-            caret-color: transparent;
-            outline: none;
-            border: none;
-        }
+            .form-border input {
+                caret-color: transparent;
+                outline: none;
+                border: none;
+            }
 
-        .child_board {
-            margin-top: 15%;
-        }
-    </style>
-    {% block css %}
-    {% endblock %}
+            .child_board {
+                margin-top: 15%;
+            }
+        </style>
+        {% block css %}
+        {% endblock %}
 
-    <title>{% block title %}{% endblock %}</title>
-</head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
 
-<body>
-    <!--banner-->
-    <div class="banner">
-        <div class="white">
-            <p> </p>
-        </div>
-        <div class="top">
-            <p>FREE SHIPPING!!
-            </p>
-        </div>
-        <div class="white">
-            <a href="/index" style="color: black; text-decoration: none;"><span class="p1">獨角獸</span></a>
-            
-            <!--搜尋欄-->
-            
-
-            <form class="form-border" role="search" action="/search" method="get">
-                <label for="search"></label>
-                <input type="text" id="search" name="search" placeholder="針織上衣">
-                <input type="submit" value="Submit">
-            </form>
-            <!--按鈕-->
-            
-            <div class="header-utilities">
-                <ul class="nav justify-content-center">
-                    <li><a class="nav-item" href="/accounts/login">
-                            <img src="https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_profile.svg" width="38.94" height="28.59" alt="會員">
-                        </a>
-                    </li>
-                    <li><a class="nav-item" href="/cart">
-                            <img src="	https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_cart_03.svg" width="38.94" height="28.59" alt="購物車">
-                        </a>
-                    </li>
-                    <li><a class="nav-item" href="/follow_list">
-                            <img src="	https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_heart.svg" width="38.94" height="28.59" alt="收藏夾" />
-                        </a>
-                    </li>
-                </ul>
+    <body>
+        <!--banner-->
+        <div class="banner">
+            <div class="white">
+                <p> </p>
             </div>
-            
-            
+            <div class="top">
+                <p>FREE SHIPPING!!
+                </p>
+            </div>
+            <div class="white">
+                <a href="/index" style="color: black; text-decoration: none;"><span class="p1">獨角獸</span></a>
+
+                <!--搜尋欄-->
+
+
+                <form class="form-border" role="search" action="/search" method="get">
+                    <label for="search"></label>
+                    <input type="text" id="search" name="search" placeholder="針織上衣">
+                    <input type="submit" value="Submit">
+                </form>
+                <!--按鈕-->
+
+                <div class="header-utilities">
+                    <ul class="nav justify-content-center">
+                        <li><a class="nav-item" href="/accounts/login">
+                                <img src="https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_profile.svg"
+                                    width="38.94" height="28.59" alt="會員">
+                            </a>
+                        </li>
+                        <li><a class="nav-item" href="/cart">
+                                <img src="	https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_cart_03.svg"
+                                    width="38.94" height="28.59" alt="購物車">
+                            </a>
+                        </li>
+                        <li><a class="nav-item" href="/follow_list">
+                                <img src="	https://cdn.grail.bz/images/parts/common/lm20230609174311/ico_heart.svg"
+                                    width="38.94" height="28.59" alt="收藏夾" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <hr>
         </div>
 
-        <hr>
-    </div>
+        <!--board-->
+        <div class="child_board">
+            <div class="container">
+                {% block content %}
 
-    <!--board-->
-    <div class="child_board">
-        <div class="container">
-            {% block content %}
-        
-            {% endblock %}
+                {% endblock %}
+            </div>
         </div>
-    </div>
-    
-</body>
+
+    </body>
 
 </html>
-
