@@ -170,6 +170,7 @@ def category_search(request, category):
     
 
 def details(request, id):
+    # 一般呈現商品細節
     product = Product.objects.get(id=id)
     template = loader.get_template('details.html')
 
@@ -189,6 +190,27 @@ def details(request, id):
         second_range_list.append(range(0, len(product_dict_list[i])))
     
     list = [0, 1, 2, 3]
+    
+    # 加入購物車/關注清單
+    if request.method == 'GET' and "size-select" in request.GET:
+        customer = Customer.objects.get(user=request.user)
+        p_id = request.GET.get("size-select")
+        product = Product.objects.get(id = p_id)
+        
+
+        if 'follow_list' in request.GET:
+            follow_list = FollowList.objects.get(customer = customer)
+            FollowList.objects.create(followList = follow_list, product = product)
+        else:
+            # 'cart' in request.GET
+            cart = ShoppingCart.objects.get(customer = customer)
+            ShoppingCart_Product.objects.create(shoppingCart = cart, product = product) 
+
+        
+        
+
+
+    # context
     context = {
         'product' : product,
         'product_dict_list' : product_dict_list,

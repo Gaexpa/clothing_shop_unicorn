@@ -117,17 +117,26 @@
                                         <img src={{ p.0.photo }} alt={{ p.0.name }} width="100">
                                     </div>
                                     <div class="col-sm-4 card-body">
-            
-                                    <label for="size-select"> {{ p.0.color }} </label>
-                                    <select id="size-select">
                                     
-                                        <option value= {{ p.0.size }} > {{ p.0.size }} </option>
-                                        <option value= {{ p.1.size }} > {{ p.1.size }} </option>
-                                        <option value= {{ p.2.size }} > {{ p.2.size }} </option>
-                                        <option value= {{ p.3.size }} > {{ p.3.size }} </option>
+                                    <form method="get" action="/index/details/{{ p.0.id }}">
+                                        <label for="size-select"> {{ p.0.color }} </label>
+                                        <select id="size-select" name="size-select">
+                                        
+                                            <option value= {{ p.0.id}} > {{ p.0.size }} </option>
+                                            <option value= {{ p.1.id }} > {{ p.1.size }} </option>
+                                            <option value= {{ p.2.id }} > {{ p.2.size }} </option>
+                                            <option value= {{ p.3.id }} > {{ p.3.size }} </option>
 
-                                    </select>
-                    
+                                        </select>
+                                        <p><br></p>  <!--間隔-->
+                                        <div class = "d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary" name="follow_list">加入關注清單</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary" name="cart">加入購物車</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
                                 </div>
                                 </div>
                                 
@@ -141,12 +150,7 @@
                 </div>
 
             </div>
-            <div class = "d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">加入關注清單</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">加入購物車</button>
-                </div>
-            </div>
+            
         </div>        
     </div>
 {% endblock %}
