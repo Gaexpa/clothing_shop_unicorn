@@ -68,6 +68,8 @@ def register(request):
                 auth.login(request,user)
             if 'test_answers' in request.session:
                  del request.session['test_answers']
+            if 'total_score' in request.session:
+                del request.session['total_score']
             return redirect('psychometric_test')
         
     else:
@@ -91,7 +93,9 @@ def psychometric_test(request):
         if 'test_answers' not in request.session:
             print('建立新test_answers\n')
             request.session['test_answers'] = []
-        
+        if 'total_score' not in request.session:
+            print('建立新total_score\n')
+            request.session['total_score'] =0
         request.session['test_answers'] =  request.session['test_answers'] + [answer]
         s='ans'+str(len(request.session['test_answers']))+'\n'
         print(s)
@@ -100,11 +104,11 @@ def psychometric_test(request):
         print(s)
         #最後一題後顯示結果
         if len(request.session['test_answers']) == len(questions):
-            total_score = 0
+            request.session['total_score']  = 0
             for i, ans in enumerate(request.session['test_answers']):
                 choice = questions[i]['choices'].get(ans)
                 if choice:
-                    total_score += choice
+                    request.session['total_score']  += choice
             print('enter1')
             template = loader.get_template('result.html')
             return redirect('result')
