@@ -22,12 +22,16 @@ Unicorn OFFICAIL | 心理測驗
         {% csrf_token %}
         <h3>問題{{ question.id }}：</h3>
         <p>{{ question.text }}</p>
+
         {% for choice in question.choices %}
-        <label for="answer">
-            <input type="radio" name="answer" value="{{ choice }}"> {{ choice }}<br>
+        <div class="choice">
+            <label for="answer">{{ choice }}</label>
+            <input class="answer_text" type="radio" name="answer" value="{{ choice }}">
             <img src="https://i.ibb.co/09PHTN7/2a0031ab-cabc-4f78-8a96-703759c34c63.jpg" alt="照片">
+
             {% endfor %}
             <input type="submit" value="下一題">
+        </div>
     </form>
 </div>
 {% endblock %}

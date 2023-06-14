@@ -171,7 +171,6 @@ def result(request):
         template = loader.get_template('result.html')
         return HttpResponse(template.render({'answers': answers, 'choice': c.color}, request))
 
-    # 清空会话中的答案和总分
     template = loader.get_template('index.html')
     return HttpResponse(template.render(request))
 

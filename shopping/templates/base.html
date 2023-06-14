@@ -71,6 +71,41 @@
             .child_board {
                 margin-top: 15%;
             }
+
+            .circle-image {
+                border-radius: 10%;
+                background-color: rgb(160, 134, 180);
+                width: 50px;
+                height: 20px;
+            }
+
+            .circle-image a {
+                padding: 1PX;
+                color: white;
+                text-decoration: none;
+            }
+
+            .rotate_img {
+                position: flex;
+                width: 200px;
+                height: 200px;
+                display: block;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 10px;
+                animation: rotate 10s linear infinite;
+
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
         </style>
         {% block css %}
         {% endblock %}
@@ -136,6 +171,57 @@
                 {% endblock %}
             </div>
         </div>
+        <div class="mt-4 p-5 bg-dark text-white rounded">
+            <div class="toast show" style="float:right">
+                <div class="toast-header">
+                    <strong class="me-auto">社群媒體</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    <ul class="header-social-icons social-icons d-none d-sm-block ml-1 mt-4">
+                        <li class="circle-image"><a href="https://www.facebook.com/groups/FCUIECSSA/about/">
+                                fb</a></li>
+                        <li class="circle-image"><a
+                                href="https://www.google.com.tw/maps/place//@24.1793913,120.6492732,17z">
+                                google</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 p-6 bg-dark text-white">
+                    <p>歡迎來到我們的服飾購物網站！我們將獨角獸及心理測驗結合，為您提供一個獨特的購物體驗。我們希望通過時尚服飾與內心的奇幻連結，讓您展現獨特的魅力，無論您是追求個性時尚還是對心理學感興趣，我們都能滿足您的需求。快來探索我們的獨角獸世界吧!
+                    </p>
+                </div>
+                <div class="col-sm-4 p-6 bg-dark text-white">
+                    <pre>
+聯絡我們
+獨角獸商場
+台中市西屯區逢大路127號(文華路100號)
+聯絡電話：0424517250#3701
+聯絡信箱：iecs@fcu.edu.tw
+
+個資保護政策
+
+ 
+
+                </pre>
+                </div>
+                <div class="col-sm-3 p-6 bg-dark text-white">
+                    <img class="rotate_img"
+                        src="https://i.ibb.co/j3b37Gv/471bb3e9-fc4a-428a-a69a-fc0abe8954c9-removebg-preview.png"
+                        style="width:200px;">
+                </div>
+
+            </div>
+
+            <h1> </h1>
+
+
+
+
+        </div>
+
 
     </body>
 

@@ -1,24 +1,20 @@
 section {
-    /* 相对定位 */
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片 */
     background-image: url('https://i.ibb.co/YyL2DzC/da36d51c-cd8e-4ecb-adeb-bcd90913f6b0.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* 背景颜色 */
+/* 背景顏色*/
 
 section .color {
-    /* 绝对定位 */
     position: absolute;
-    /* 使用filter(滤镜) 属性，给图像设置高斯模糊*/
     filter: blur(200px);
 }
 
