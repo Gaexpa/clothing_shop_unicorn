@@ -42,7 +42,7 @@
                 font-size: 50px;
             }
 
-            .top {
+            #top {
                 background-color: rgb(160, 134, 180);
                 color: white;
                 display: flex;
@@ -84,7 +84,8 @@
             <div class="white">
                 <p> </p>
             </div>
-            <div class="top">
+            <div id="top" {%if request.session.color%}style="background-color: {{ request.session.color }};"
+                {%else%}style="background-color:rgb(160, 134, 180);" {% endif %}>
                 <p>FREE SHIPPING!!
                 </p>
             </div>

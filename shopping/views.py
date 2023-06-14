@@ -11,9 +11,11 @@ from shopping.forms import RegistrationForm
 
 
 def index(request):
-    if 'color' not in request.session:
-        request.session['test_answers'] = []
-        request.session['test_answers']='rgb(160, 134, 180)'
+    if request.user.is_authenticated:
+        pass
+    else:
+        if 'color' in request.session:
+            del request.session['color']
     template = loader.get_template('index.html')
     new_products = Product.objects.raw('SELECT * FROM shopping_product GROUP BY name ORDER BY id DESC LIMIT 10')
     #new_products = Product.objects.order_by("-id").values('name').distinct()[:10]
@@ -39,6 +41,17 @@ def login(request):
             user = authenticate(request=request,username=username, password=password)
             if user is not None:
                 auth.login(request,user)
+                c=Customer.objects.get(id=user.id)
+                if c.color=='R': 
+                    request.session['color']  = "rgb(242, 174, 174)"
+                elif c.color=='G': 
+                    request.session['color']  = "rgb(131, 202, 180)"
+                elif c.color=='B': 
+                    request.session['color']  = "rgb(150, 149, 230)"
+                elif c.color=='Y': 
+                    request.session['color']  = "rgb(252, 227, 153)"
+                else:
+                    pass
                 return redirect('index')
     else:
         form = AuthenticationForm()
@@ -70,6 +83,7 @@ def register(request):
                  del request.session['test_answers']
             if 'total_score' in request.session:
                 del request.session['total_score']
+            
             return redirect('psychometric_test')
         
     else:
@@ -83,7 +97,7 @@ def psychometric_test(request):
     questions = [
         {'id': 1, 'text': '問題1:你喜歡哪個季節？', 'choices': {'春天':1, '夏天':2, '秋天':3,'冬天':4}},
         {'id': 2, 'text': '問題2:在霍格華茲魔法與巫術學院中探險吧！', 'choices': {'禁林':4, '天文塔':3, '溫室':1,'海格的小屋':2}},
-        {'id': 3, 'text': '問題3:閒暇的周末請選擇一項安排', 'choices': {'豋山吸收芬多精':1, '製作和創造新的網站':3, '參加朋友舉辦的換裝派對':2,'追新出的動畫作品':4}},
+        {'id': 3, 'text': '問題3:閒暇的周末請選擇一項安排', 'choices': {'登山吸收芬多精':1, '製作和創造新的網站':3, '參加朋友舉辦的換裝派對':2,'追新出的動畫作品':4}},
     ]
     if request.method == 'POST':
         # 获取当前问题的回答
@@ -134,23 +148,24 @@ def result(request):
         if total_score%4==0:
             print("choice1")
             setattr(c,'color','R')
-            c.address="apple"
             c.save()
+            request.session['color']  = "rgb(242, 174, 174)"
         elif total_score%4==1:
             print("choice1")
             c.address="apple"
             setattr(c,'color','G')
             c.save()
+            request.session['color']  = "rgb(131, 202, 180)"
         elif total_score%4==2:
             print("choice1")
-            c.address="apple"
             setattr(c,'color','B')
             c.save()
+            request.session['color']  = "rgb(150, 149, 230)"
         else:
             print("choice1")
-            c.address="apple"
             setattr(c,'color','Y')
             c.save()
+            request.session['color']  = "rgb(252, 227, 153)"
         request.session.pop('test_answers', None)
         request.session.pop('total_score', None)
         template = loader.get_template('result.html')
